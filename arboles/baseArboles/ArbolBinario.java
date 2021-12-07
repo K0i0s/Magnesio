@@ -1,4 +1,4 @@
-package baseArboles;
+package arboles.baseArboles;
 
 public class ArbolBinario{
     public NodoArbol raiz;
