@@ -1,13 +1,13 @@
-package test;
+package arboles.test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import baseArboles.ArbolBinario;
-import baseArboles.NodoArbol;
+import arboles.baseArboles.ArbolBinario;
+import arboles.baseArboles.NodoArbol;
 
-public class TestArbol {
+public class testArbol {
     public static void main(String[] args) throws IOException, NumberFormatException{
         int a;
         int x = 1;
@@ -51,6 +51,8 @@ public class TestArbol {
 
         System.out.println("\nPostorden del árbol:");
         ArbolBinario.postorden(arbol.raiz);
+        //pir ddsfdsfdsfsdfsdfsdf
+        System.out.println("Estructuras ");
     }
-    System.out.println(" Hola Mundo");
+    
 }
