@@ -46,4 +46,12 @@ public class Trabajador extends Persona{
     }
 
     public void mostrarDatos(){
+        System.out.println("--------------------------------------------------------");
+        System.out.println("ID: " + this.id);
+        System.out.println("Nombre completo: " + this.nombre + " " + this.apellidoP + " " + this.apellidoM);
+        System.out.println("Edad: " + this.edad);
+        System.out.println("GÃ©nero: " + this.genero);
+        System.out.println("Puesto: " + this.puesto);
+        System.out.println("Sueldo: $" + this.sueldo);
+    }
 }
