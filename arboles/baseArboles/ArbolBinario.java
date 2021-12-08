@@ -44,5 +44,37 @@ public class ArbolBinario{
         }
         return aux;
     }
-    
+        public static void preorden(NodoArbol r){
+        if (r != null) {
+            r.dato.mostrarDatos();
+            preorden(r.subarbolIzdo());
+            preorden(r.subarbolDecho());
+        }
+        else if(nElementos == 0){
+            System.out.println("\n\t No hay registros...\n");
+        }
+    }
+
+    public static void inorden(NodoArbol r){
+        if (r != null) {
+            inorden(r.subarbolIzdo());
+            r.dato.mostrarDatos();
+            inorden(r.subarbolDecho());
+        }
+        else if(nElementos == 0){
+            System.out.println("\n\t No hay registros...\n");
+        }
+    }
+
+    public static void postorden(NodoArbol r){
+        if (r != null) {
+            postorden(r.subarbolIzdo());
+            postorden(r.subarbolDecho());
+            r.dato.mostrarDatos();
+        }
+        else if(nElementos == 0){
+            System.out.println("\n\t No hay registros...\n");
+        }
+    }
+
 } 
