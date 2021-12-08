@@ -44,7 +44,7 @@ public class ArbolBinario{
         }
         return aux;
     }
-        public static void preorden(NodoArbol r){
+    public static void preorden(NodoArbol r){
         if (r != null) {
             r.dato.mostrarDatos();
             preorden(r.subarbolIzdo());
