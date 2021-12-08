@@ -52,9 +52,6 @@ public class Persona {
     }
 
     public void setGenero(String genero) {
-<<<<<<< HEAD
-=======
         this.genero = genero;
     } 
->>>>>>> 839a91b690a8145643c2d9bfa43716061591b088
 }
