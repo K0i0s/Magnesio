@@ -62,5 +62,6 @@ public class Trabajador extends Persona{
         System.out.println("Género: " + this.genero);
         System.out.println("Puesto: " + this.puesto);
         System.out.println("Sueldo: $" + this.sueldo);
+        System.out.println("--------------------------------------------------------");
     }
 }
