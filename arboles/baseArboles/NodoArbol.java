@@ -1,5 +1,7 @@
 package arboles.baseArboles;
 
+import arboles.trabajadores.Trabajador;
+
 public class NodoArbol{ 
 public Trabajador dato; 
     protected NodoArbol izq;
