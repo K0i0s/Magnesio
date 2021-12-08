@@ -1,4 +1,4 @@
-package pilaGenerica;
+package arboles.pilaGenerica;
 
 public class NodoPila {
     private NodoPila nodo;
