@@ -222,6 +222,64 @@ public class ArbolBinario{
             System.out.println("\nNo se encontró la ID. Regresando al Menú Principal");
         }
     }
+ public void eliminarNodo(int d){
+        NodoArbol aux = raiz;
+        NodoArbol padre = raiz;
+        boolean esIzq = true;
+        
+        while (aux.dato.getId() != d) {
+            padre = aux;
+            if (d < aux.dato.getId()) {
+                esIzq = true;
+                aux = aux.izq;
+            }
+            else{
+                esIzq = false;
+                aux = aux.der;
+            }
+        }
+        if (aux.izq == null && aux.der == null) {
+            if (aux == raiz) {
+                raiz = null;
+            }else if (esIzq) {
+                padre.izq = null;
+            }
+            else{
+                padre.der = null;
+            }
+        }
+        else if (aux.der == null) {
+            if (aux == raiz) {
+                raiz = aux.izq;
+            }else if (esIzq) {
+                padre.izq = aux.izq;
+            }
+            else{
+                padre.der = aux.izq;
+            }
+        }
+        else if (aux.izq == null) {
+            if (aux == raiz) {
+                raiz = aux.der;
+            }else if (esIzq) {
+                padre.izq = aux.der;
+            }
+            else{
+                padre.der = aux.der;
+            }
+        }
+        else{
+            NodoArbol reemplazo = obtenerReemplazo(aux);
+            if(aux == raiz){
+                raiz = reemplazo;
+            } else if (esIzq) {
+                padre.izq = reemplazo;
+            } else{
+                padre.der = reemplazo;
+            }
+            reemplazo.izq = aux.izq;
+        }
+    }
 
     public static void menu() throws NumberFormatException, IOException {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
