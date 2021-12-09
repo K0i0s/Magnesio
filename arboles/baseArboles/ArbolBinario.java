@@ -280,6 +280,22 @@ public class ArbolBinario{
             reemplazo.izq = aux.izq;
         }
     }
+public NodoArbol obtenerReemplazo(NodoArbol nodoReemp) {
+        NodoArbol reemplazarPadre = nodoReemp;
+        NodoArbol reemplazo = nodoReemp;
+        NodoArbol aux = nodoReemp.der;
+
+        while (aux != null) {
+            reemplazarPadre = reemplazo;
+            reemplazo = aux;
+            aux = aux.izq;
+        }
+        if (reemplazo != nodoReemp.der) {
+            reemplazarPadre.izq = reemplazo.der;
+            reemplazo.der = nodoReemp.der;
+        }
+        return reemplazo;
+    }
 
     public static void menu() throws NumberFormatException, IOException {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
