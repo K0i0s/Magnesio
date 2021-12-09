@@ -192,7 +192,6 @@ public class ArbolBinario{
         boolean idIntroducida = false;
         int id=0;
         
-        
         while(idIntroducida == false){
             try{
                 System.out.println("\nID del Trabajador que desee eliminar:");
