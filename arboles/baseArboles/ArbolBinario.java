@@ -116,6 +116,15 @@ public class ArbolBinario{
     public int contador() {
         return nElementos;
     }
+    public void agregarRegistro(ArbolBinario arbol) throws IOException {
+        if (contador() <= 8999) {
+            nElementos++;
+            arbol.agregarNodo(arbol.pedirDatos());
+        }
+        else {
+            System.out.println("Capacidad llena...");
+        }
+    }
 
     public Trabajador pedirDatos() throws IOException {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
