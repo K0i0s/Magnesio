@@ -186,23 +186,11 @@ public class ArbolBinario{
         Trabajador aux = new Trabajador(nombre, apellidoP, apellidoM, edad, genero, id, sueldo, puesto);
         return aux;
     }
-    
-    public void modificarRegistro(ArbolBinario arbol) throws IOException {
+ public void eliminarRegistro(ArbolBinario arbol) throws IOException {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        int op = 1;
-        int id=0;
         boolean idIntroducida = false;
-        boolean salir;
-        String nombre;
-        String apellidoP;
-        String apellidoM;
-        int edad = 0;
-        String genero;
-        double sueldo = 0;
-        boolean esNum = false;
-        String puesto;
-        Trabajador aux;
-
+        int id=0;
+        
         while(idIntroducida == false){
             try{
                 System.out.println("\nID del Trabajador que desee modificar:");
@@ -213,100 +201,25 @@ public class ArbolBinario{
                 }
         }
 
-        aux = arbol.buscarNodo(id).getDato();
-
         if(arbol.buscarNodo(id) != null){
-            while (op > 0) {
-                salir = false;
-                while (salir == false) {
-                    try {// try para verificar que el valor de op sea válido.
-                        System.out.println("\n1. Modificar Nombre(s).");
-                        System.out.println("2. Modificar Apellido Paterno.");
-                        System.out.println("3. Modificar Apellido Materno.");
-                        System.out.println("4. Modificar Edad.");
-                        System.out.println("5. Modificar Género.");
-                        System.out.println("6. Modificar Puesto.");
-                        System.out.println("7. Modificar Sueldo.");
-                        System.out.println("0. Regresar al Menú Principal.");
-    
-                        System.out.println("\nOpción:");
-                        op = Integer.parseInt(lector.readLine()); // Se pide el número de la acción
-                        salir = true;
-                    } catch (NumberFormatException e) {
-                        System.out.println("\nEntrada no válida..."); // Se imprime este mensaje indicando el error
-                        op = 8;
-                    }
-    
-                    switch (op) {
-                    case 1:
-                        System.out.println("\nNombre(s): ");
-                        nombre = lector.readLine();
-                        aux.setNombre(nombre);
-                        break;
-    
-                    case 2:
-                        System.out.println("\nApellido Paterno: ");
-                        apellidoP = lector.readLine();
-                        aux.setApellidoP(apellidoP);
-                        break;
-    
-                    case 3:
-                        System.out.println("\nApellido Materno: ");
-                        apellidoM = lector.readLine();
-                        aux.setApellidoM(apellidoM);
-                        break;
-    
-                    case 4:
-                        esNum = false;
-                        while (esNum == false) {
-                            try {
-                                System.out.println("\nEdad: ");
-                                edad = Integer.parseInt(lector.readLine());
-                                esNum = true;
-                            } catch (NumberFormatException e) {
-                                System.out.println("\nEntrada no válida...");
-                                esNum = false;
-                            }
-                        }
-                        aux.setEdad(edad);
-                        break;
-    
-                    case 5:
-                        System.out.println("\nGénero: ");
-                        genero = lector.readLine();
-                        aux.setGenero(genero);
-                        break;
-    
-                    case 6:
-                        System.out.println("\nPuesto: ");
-                        puesto = lector.readLine();
-                        aux.setPuesto(puesto);
-                        break;
-                    
-                    case 7:
-                        esNum = false;
-                        while (esNum == false) {
-                            try {
-                                System.out.println("\nSueldo: ");
-                                sueldo = Double.parseDouble(lector.readLine());
-                                esNum = true;
-                            } catch (NumberFormatException e) {
-                                System.out.println("\nEntrada no válida...");
-                                esNum = false;
-                            }
-                        }
-                        aux.setSueldo(sueldo);
-                        break;
-    
-                    default:
-                        salir = true;
-                        break;
-                    }
+            String respuesta = "";
+            while(!respuesta.equals("si") && !respuesta.equals("SI") && !respuesta.equals("Si") && !respuesta.equals("sI") && !respuesta.equals("no") && !respuesta.equals("NO") && !respuesta.equals("No") && !respuesta.equals("nO")){
+                System.out.println("\n¿Seguro que desea eliminar el registro? Si/No");
+                respuesta = lector.readLine().toString();
+                if (!respuesta.equals("si") && !respuesta.equals("SI") && !respuesta.equals("Si") && !respuesta.equals("sI") && !respuesta.equals("no") && !respuesta.equals("NO") && !respuesta.equals("No") && !respuesta.equals("nO")) {
+                    System.out.println("Respuesta no válida...");
                 }
+            }
+            if(respuesta.equals("si") || respuesta.equals("SI") || respuesta.equals("Si") || respuesta.equals("sI")){
+                arbol.eliminarNodo(id);
+                System.out.println("Se ha eliminado exitosamente el trabajador con ID: " + id);
+            }
+            else{
+                System.out.println("\nRegresando al Menú Principal");
             }
         }
         else{
-            System.out.println("No se encontró esa ID. Regresando al Menú Principal...");
+            System.out.println("\nNo se encontró la ID. Regresando al Menú Principal");
         }
     }
 
