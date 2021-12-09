@@ -1,5 +1,9 @@
 package arboles.baseArboles;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import arboles.trabajadores.Trabajador;
 
 public class ArbolBinario{
