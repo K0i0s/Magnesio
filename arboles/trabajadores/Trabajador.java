@@ -2,7 +2,6 @@ package arboles.trabajadores;
 
 public class Trabajador extends Persona{
     public int id;
-    public int orden;
     public double sueldo;
     public String puesto;
 
