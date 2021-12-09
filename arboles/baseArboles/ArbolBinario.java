@@ -191,6 +191,7 @@ public class ArbolBinario{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         boolean idIntroducida = false;
         int id=0;
+        Trabajador aux = arbol.buscarNodo(id).getDato();
         
         while(idIntroducida == false){
             try{
@@ -213,7 +214,8 @@ public class ArbolBinario{
             }
             if(respuesta.equals("si") || respuesta.equals("SI") || respuesta.equals("Si") || respuesta.equals("sI")){
                 arbol.eliminarNodo(id);
-                System.out.println("Se ha eliminado exitosamente el trabajador con ID: " + id);
+                System.out.println("Se ha eliminado exitosamente el trabajador: ");
+                aux.mostrarDatos();
             }
             else{
                 System.out.println("\nRegresando al Menú Principal");
