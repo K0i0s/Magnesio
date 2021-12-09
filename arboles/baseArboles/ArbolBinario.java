@@ -177,4 +177,7 @@ public class ArbolBinario{
         Trabajador aux = new Trabajador(nombre, apellidoP, apellidoM, edad, genero, id, sueldo, puesto);
         return aux;
     }
+
+    public static void menu() {
+    }
 } 
