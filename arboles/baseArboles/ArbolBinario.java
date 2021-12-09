@@ -187,6 +187,65 @@ public class ArbolBinario{
         return aux;
     }
 
-    public static void menu() {
+    public static void menu() throws NumberFormatException, IOException {
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        int op = 1;
+        boolean salir;
+        ArbolBinario arbol = new ArbolBinario();
+
+        // Se regresa al menú siempre y cuando op no sea 0
+        while (op > 0) {
+            salir = false;
+            while (salir == false) {
+                try {// try para verificar que el valor de op sea válido.
+                    System.out.println("\n\t MENÚ REGISTRO EMPLEADOS\n"); // Se muestran las opciones del menú al
+                                                                          // usuario
+                    System.out.println("1. Agregar registro.");
+                    System.out.println("2. Eliminar registro.");
+                    System.out.println("3. Modificar registro.");
+                    System.out.println("4. Consultar por preorden.");
+                    System.out.println("5. Consultar por inorden.");
+                    System.out.println("6. Consultar por postorden.");
+                    System.out.println("0. Salir.");
+
+                    System.out.println("\nOpción:");
+                    op = Integer.parseInt(lector.readLine()); // Se pide el número de la acción
+                    salir = true;
+                } catch (NumberFormatException e) {
+                    System.out.println("\nEntrada no válida..."); // Se imprime este mensaje indicando el error
+                    op = 7;
+                }
+
+                switch (op) {
+                case 1:
+                    System.out.println("\n\t AGREGAR TRABAJADOR\n");
+                    break;
+
+                case 2:
+                    System.out.println("\n\t ELIMINAR TRABAJADOR\n");
+                    break;
+
+                case 3:
+                    System.out.println("\n\t MODIFICAR REGISTRO");
+                    break;
+
+                case 4:
+                    System.out.println("\n\t CONSULTA DE REGISTRO EN PREORDEN\n");
+                    break;
+
+                case 5:
+                    System.out.println("\n\t CONSULTA DE REGISTRO EN INORDEN\n");
+                    break;
+
+                case 6:
+                    System.out.println("\n\t CONSULTA DE REGISTRO EN POSTORDEN\n");
+                    break;
+
+                default:
+                    salir = true;
+                    break;
+                }
+            }
+        }
     }
 } 
