@@ -186,7 +186,8 @@ public class ArbolBinario{
         Trabajador aux = new Trabajador(nombre, apellidoP, apellidoM, edad, genero, id, sueldo, puesto);
         return aux;
     }
- public void eliminarRegistro(ArbolBinario arbol) throws IOException {
+    
+    public void eliminarRegistro(ArbolBinario arbol) throws IOException {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         boolean idIntroducida = false;
         int id=0;
@@ -222,7 +223,8 @@ public class ArbolBinario{
             System.out.println("\nNo se encontró la ID. Regresando al Menú Principal");
         }
     }
- public void eliminarNodo(int d){
+
+    public void eliminarNodo(int d){
         NodoArbol aux = raiz;
         NodoArbol padre = raiz;
         boolean esIzq = true;
@@ -280,7 +282,8 @@ public class ArbolBinario{
             reemplazo.izq = aux.izq;
         }
     }
-public NodoArbol obtenerReemplazo(NodoArbol nodoReemp) {
+
+    public NodoArbol obtenerReemplazo(NodoArbol nodoReemp) {
         NodoArbol reemplazarPadre = nodoReemp;
         NodoArbol reemplazo = nodoReemp;
         NodoArbol aux = nodoReemp.der;
@@ -420,6 +423,130 @@ public NodoArbol obtenerReemplazo(NodoArbol nodoReemp) {
         }
     }
 
+    public void modificarRegistro(ArbolBinario arbol) throws IOException {
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        int op = 1;
+        int id=0;
+        boolean idIntroducida = false;
+        boolean salir;
+        String nombre;
+        String apellidoP;
+        String apellidoM;
+        int edad = 0;
+        String genero;
+        double sueldo = 0;
+        boolean esNum = false;
+        String puesto;
+        Trabajador aux;
+
+        while(idIntroducida == false){
+            try{
+                System.out.println("\nID del Trabajador que desee modificar:");
+                id = Integer.parseInt(lector.readLine());
+                idIntroducida = true;
+            } catch (NumberFormatException e) {
+                    System.out.println("\nEntrada no válida..."); // Se imprime este mensaje indicando el error
+                }
+        }
+
+        aux = arbol.buscarNodo(id).getDato();
+
+        if(arbol.buscarNodo(id) != null){
+            while (op > 0) {
+                salir = false;
+                while (salir == false) {
+                    try {// try para verificar que el valor de op sea válido.
+                        System.out.println("\n1. Modificar Nombre(s).");
+                        System.out.println("2. Modificar Apellido Paterno.");
+                        System.out.println("3. Modificar Apellido Materno.");
+                        System.out.println("4. Modificar Edad.");
+                        System.out.println("5. Modificar Género.");
+                        System.out.println("6. Modificar Puesto.");
+                        System.out.println("7. Modificar Sueldo.");
+                        System.out.println("0. Regresar al Menú Principal.");
+    
+                        System.out.println("\nOpción:");
+                        op = Integer.parseInt(lector.readLine()); // Se pide el número de la acción
+                        salir = true;
+                    } catch (NumberFormatException e) {
+                        System.out.println("\nEntrada no válida..."); // Se imprime este mensaje indicando el error
+                        op = 8;
+                    }
+    
+                    switch (op) {
+                    case 1:
+                        System.out.println("\nNombre(s): ");
+                        nombre = lector.readLine();
+                        aux.setNombre(nombre);
+                        break;
+    
+                    case 2:
+                        System.out.println("\nApellido Paterno: ");
+                        apellidoP = lector.readLine();
+                        aux.setApellidoP(apellidoP);
+                        break;
+    
+                    case 3:
+                        System.out.println("\nApellido Materno: ");
+                        apellidoM = lector.readLine();
+                        aux.setApellidoM(apellidoM);
+                        break;
+    
+                    case 4:
+                        esNum = false;
+                        while (esNum == false) {
+                            try {
+                                System.out.println("\nEdad: ");
+                                edad = Integer.parseInt(lector.readLine());
+                                esNum = true;
+                            } catch (NumberFormatException e) {
+                                System.out.println("\nEntrada no válida...");
+                                esNum = false;
+                            }
+                        }
+                        aux.setEdad(edad);
+                        break;
+    
+                    case 5:
+                        System.out.println("\nGénero: ");
+                        genero = lector.readLine();
+                        aux.setGenero(genero);
+                        break;
+    
+                    case 6:
+                        System.out.println("\nPuesto: ");
+                        puesto = lector.readLine();
+                        aux.setPuesto(puesto);
+                        break;
+                    
+                    case 7:
+                        esNum = false;
+                        while (esNum == false) {
+                            try {
+                                System.out.println("\nSueldo: ");
+                                sueldo = Double.parseDouble(lector.readLine());
+                                esNum = true;
+                            } catch (NumberFormatException e) {
+                                System.out.println("\nEntrada no válida...");
+                                esNum = false;
+                            }
+                        }
+                        aux.setSueldo(sueldo);
+                        break;
+    
+                    default:
+                        salir = true;
+                        break;
+                    }
+                }
+            }
+        }
+        else{
+            System.out.println("No se encontró esa ID. Regresando al Menú Principal...");
+        }
+    }
+
+
     public static void menu() throws NumberFormatException, IOException {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         int op = 1;
@@ -450,34 +577,58 @@ public NodoArbol obtenerReemplazo(NodoArbol nodoReemp) {
                 }
 
                 switch (op) {
-                case 1:
-                    System.out.println("\n\t AGREGAR TRABAJADOR\n");
-                    break;
-
-                case 2:
-                    System.out.println("\n\t ELIMINAR TRABAJADOR\n");
-                    break;
-
-                case 3:
-                    System.out.println("\n\t MODIFICAR REGISTRO");
-                    break;
-
-                case 4:
-                    System.out.println("\n\t CONSULTA DE REGISTRO EN PREORDEN\n");
-                    break;
-
-                case 5:
-                    System.out.println("\n\t CONSULTA DE REGISTRO EN INORDEN\n");
-                    break;
-
-                case 6:
-                    System.out.println("\n\t CONSULTA DE REGISTRO EN POSTORDEN\n");
-                    break;
-
-                default:
-                    salir = true;
-                    break;
-                }
+                    case 1:
+                        System.out.println("\n\t AGREGAR TRABAJADOR\n");
+                        if(nElementos==0){
+                            arbol = new ArbolBinario(new NodoArbol(arbol.pedirDatos()));
+                            nElementos++;
+                        }
+                        else{
+                            arbol.agregarRegistro(arbol);
+                        }
+                        break;
+    
+                    case 2:
+                        System.out.println("\n\t ELIMINAR TRABAJADOR\n");
+                        if (nElementos == 0) {
+                            System.out.println("\n\t No hay registros...\n");
+                            
+                        }
+                        else{
+                            arbol.eliminarRegistro(arbol);
+                            nElementos--;
+                        }
+                        break;
+    
+                    case 3:
+                        System.out.println("\n\t MODIFICAR REGISTRO");
+                        if (nElementos == 0) {
+                            System.out.println("\n\t No hay registros...\n");  
+                        }   
+                        else{
+                            arbol.modificarRegistro(arbol);
+                        }
+                        break;
+    
+                    case 4:
+                        System.out.println("\n\t CONSULTA DE REGISTRO EN PREORDEN\n");
+                        ArbolBinario.preorden(arbol.raiz);
+                        break;
+    
+                    case 5:
+                        System.out.println("\n\t CONSULTA DE REGISTRO EN INORDEN\n");
+                        ArbolBinario.inorden(arbol.raiz);
+                        break;
+    
+                    case 6:
+                        System.out.println("\n\t CONSULTA DE REGISTRO EN POSTORDEN\n");
+                        ArbolBinario.postorden(arbol.raiz);
+                        break;
+    
+                    default:
+                        salir = true;
+                        break;
+                    }
             }
         }
     }
