@@ -191,17 +191,19 @@ public class ArbolBinario{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         boolean idIntroducida = false;
         int id=0;
-        Trabajador aux = arbol.buscarNodo(id).getDato();
+        
         
         while(idIntroducida == false){
             try{
-                System.out.println("\nID del Trabajador que desee modificar:");
+                System.out.println("\nID del Trabajador que desee eliminar:");
                 id = Integer.parseInt(lector.readLine());
                 idIntroducida = true;
             } catch (NumberFormatException e) {
                     System.out.println("\nEntrada no válida..."); // Se imprime este mensaje indicando el error
                 }
         }
+
+        Trabajador aux = arbol.buscarNodo(id).getDato();
 
         if(arbol.buscarNodo(id) != null){
             String respuesta = "";
@@ -214,7 +216,7 @@ public class ArbolBinario{
             }
             if(respuesta.equals("si") || respuesta.equals("SI") || respuesta.equals("Si") || respuesta.equals("sI")){
                 arbol.eliminarNodo(id);
-                System.out.println("Se ha eliminado exitosamente el trabajador: ");
+                System.out.println("Se ha eliminado exitosamente el trabajador: \n");
                 aux.mostrarDatos();
             }
             else{
